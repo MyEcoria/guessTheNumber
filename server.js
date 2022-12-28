@@ -17,6 +17,8 @@ console.log(`Le nombre à deviner est : ${secretNumber}`);
 app.post('/guess', (request, response) => {
   const guess = request.body.guess;
   if (guess == secretNumber) {
+    const secretNumber = Math.floor(Math.random() * 100);
+    console.log(`Le nombre à deviner est : ${secretNumber}`);
     response.json({
       message: 'Félicitations, vous avez deviné le nombre !',
       success: true,
