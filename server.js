@@ -10,14 +10,14 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // the secret number to guess (between 0 and 100)
-const secretNumber = Math.floor(Math.random() * 100);
+secretNumber = Math.floor(Math.random() * 100);
 console.log(`Le nombre à deviner est : ${secretNumber}`);
 
 // route to handle the form submission (POST request)
 app.post('/guess', (request, response) => {
   const guess = request.body.guess;
   if (guess == secretNumber) {
-    const secretNumber = Math.floor(Math.random() * 100);
+    secretNumber = Math.floor(Math.random() * 100);
     console.log(`Le nombre à deviner est : ${secretNumber}`);
     response.json({
       message: 'Félicitations, vous avez deviné le nombre !',
