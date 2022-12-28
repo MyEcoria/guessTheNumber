@@ -13,5 +13,31 @@
     <input type="number" name="guess">
     <button type="submit">Envoyer</button>
   </form>
+  <div id="message"></div>
+
+  <script>
+    const form = document.querySelector('form');
+    const messageElement = document.querySelector('#message');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const guess = form.querySelector('input[name="guess"]').value;
+
+      fetch('/guess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guess }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            messageElement.innerHTML = `<p class="success">${data.message}</p>`;
+          } else {
+            messageElement.innerHTML = `<p class="error">${data.message}</p>`;
+          }
+        });
+    });
+  </script>
 </body>
 </html>
