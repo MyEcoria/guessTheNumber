@@ -16,20 +16,15 @@ const secretNumber = Math.floor(Math.random() * 100);
 app.post('/guess', (request, response) => {
   const guess = request.body.guess;
   if (guess == secretNumber) {
-    response.send(`
-      <h1 class="success">Félicitations, vous avez deviné le nombre !</h1>
-      <p>Le nombre était en effet ${guess}.</p>
-      <a href="/">Rejouer</a>
-    `);
+    response.json({
+      message: 'Félicitations, vous avez deviné le nombre !',
+      success: true,
+    });
   } else {
-    response.send(`
-      <h1 class="error">Désolé, ce n'est pas le bon nombre.</h1>
-      <p>Veuillez réessayer :</p>
-      <form method="POST" action="/guess">
-        <input type="number" name="guess">
-        <button type="submit">Envoyer</button>
-      </form>
-    `);
+    response.json({
+      message: "Désolé, ce n'est pas le bon nombre.",
+      success: false,
+    });
   }
 });
 
@@ -42,4 +37,3 @@ app.get('/', (request, response) => {
 app.listen(3001, () => {
   console.log('Server listening on port 3001');
 });
-
