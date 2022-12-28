@@ -1,10 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
-// parse request bodies as JSON
+// Configure body-parser pour parser les données envoyées via le formulaire
 app.use(bodyParser.json());
+
+// Configure cookie-parser pour parser les cookies envoyés par le client
+app.use(cookieParser());
 
 // serve static files from the "public" directory
 app.use(express.static('public'));
@@ -33,7 +37,12 @@ app.post('/guess', (request, response) => {
 
 // route to display the home page (GET request)
 app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/public/index.html');
+  // Vérifie si le cookie "account" existe
+  if (req.cookies.account) {
+    response.sendFile(__dirname + '/public/index.html');
+  } else {
+    response.sendFile(__dirname + '/public/login.html');
+  }
 });
 
 // start the server
