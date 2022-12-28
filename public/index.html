@@ -6,14 +6,16 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Bienvenue au jeu de devinette de nombre !</h1>
-  <p>Le nombre à deviner est compris entre 0 et 100.</p>
-  <p>Entrez votre guess dans le formulaire ci-dessous :</p>
-  <form method="POST" action="/guess">
-    <input type="number" name="guess">
-    <button type="submit">Envoyer</button>
-  </form>
-  <div id="message"></div>
+  <div id="content">
+    <h1>Bienvenue au jeu de devinette de nombre !</h1>
+    <p>Le nombre à deviner est compris entre 0 et 100.</p>
+    <p>Entrez votre guess dans le formulaire ci-dessous :</p>
+    <form method="POST" action="/guess">
+      <input type="number" name="guess">
+      <button type="submit">Envoyer</button>
+    </form>
+    <div id="message"></div>
+  </div>
 
   <script>
     const form = document.querySelector('form');
