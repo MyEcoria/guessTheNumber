@@ -49,9 +49,9 @@ app.get('/', (request, response) => {
   console.log(request.cookies.account);
   // Vérifie si le cookie "account" existe
   if (request.cookies.account) {
-    response.sendFile(__dirname + '/public/index.html');
+    response.sendFile(__dirname + '/play.html');
   } else {
-    response.sendFile(__dirname + '/public/login.html');
+    response.sendFile(__dirname + '/index.html');
   }
 });
 
