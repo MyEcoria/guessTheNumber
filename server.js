@@ -46,6 +46,7 @@ app.post('/guess', (request, response) => {
 
 // route to display the home page (GET request)
 app.get('/', (request, response) => {
+  console.log(request.cookies.account);
   // Vérifie si le cookie "account" existe
   if (request.cookies.account) {
     response.sendFile(__dirname + '/public/index.html');
